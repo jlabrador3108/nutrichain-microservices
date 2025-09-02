@@ -1,0 +1,10 @@
+FROM bitnami/node:22 AS dependencies
+WORKDIR /app
+COPY package.json ./
+RUN yarn install 
+
+FROM bitnami/node:22 AS runner
+WORKDIR /app
+COPY --from=dependencies /app/node_modules ./node_modules
+COPY . .
+CMD ["bash", "-c", "yarn run start:dev"]

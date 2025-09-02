@@ -1,0 +1,9 @@
+.git
+node_modules
+logs
+tmp
+docker-compose.override.yml
+data/
+logs/
+tmp/
+*.log

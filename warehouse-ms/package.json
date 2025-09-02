@@ -1,0 +1,20 @@
+{
+  "name": "warehouse-ms",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "prisma:gen": "prisma generate",
+    "prisma:push": "prisma db push",
+    "seed": "node src/seeds/index.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.15.0",
+    "apollo-server-express": "^3.13.0",
+    "express": "^5.1.0",
+    "graphql": "^16.11.0",
+    "nodemon": "^3.1.10"
+  }
+}
