@@ -65,17 +65,28 @@ const typeDefs = gql`
     createdAt: String
   }
 
+  input ItemInput {
+    productSku: String
+    quantity: Float
+  }
+
   type Query {
     warehouses: [Warehouse!]!
     warehouse(id: ID!): Warehouse
     stock(productSku: String!, warehouseId: ID!): Stock
     totalStockByProduct(productSku: String!): StockSummary!
+    checkStockAvailabilityByProducts(items: [ItemInput!]!): Boolean!
   }
 
   input LocationInput {
     address: String
     lat: Float
     lon: Float
+  }
+
+  input StockInput {
+  productSku: String!
+  quantity: Float!
   }
 
   type Mutation {
@@ -123,6 +134,7 @@ const typeDefs = gql`
       quantity: Int!
       note: String
     ): Movement
+    deductStocksByProducts(items: [StockInput!]!): Boolean!
   }
 `;
 

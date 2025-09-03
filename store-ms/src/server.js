@@ -1,9 +1,10 @@
 import express from "express";
+import config from "./common/config/env.js";
 import cors from "cors";
 import { createServer } from "http";
-import { loadRoutes } from "./common/routes.index.js";
 import { allExceptionsHandler } from "./common/middlewares/all-exceptions.filter.js";
 import { responseInterceptor } from "./common/middlewares/response.interceptor.js";
+import { loadRoutes } from "./common/routes/index.js";
 
 class Server {
   app;
@@ -15,13 +16,7 @@ class Server {
 
     this.port = process.env.PORT || "4004";
 
-    this.server = createServer(this.app);
-
     this.middlewares();
-
-    loadRoutes(this.app);
-
-    this.app.use(allExceptionsHandler);
   }
 
   middlewares() {
@@ -29,6 +24,16 @@ class Server {
     this.app.use(cors());
 
     this.app.use(responseInterceptor);
+  }
+
+  async init() {
+    // cargar rutas async
+    await loadRoutes(this.app);
+
+    // middleware de errores al final
+    this.app.use(allExceptionsHandler);
+
+    this.server = createServer(this.app);
   }
 
   listen() {

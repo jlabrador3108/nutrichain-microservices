@@ -32,6 +32,10 @@ class StockController {
   async getTotalByProduct(productSku) {
     return this.service.getTotalStockByProduct(productSku);
   }
+  
+  async checkStockAvailabilityByProducts(items) {
+    return this.service.checkStockAvailabilityByProducts(items);
+  }
 
   async getStock(productSku, warehouseId) {
     return this.service.getStock(productSku, warehouseId);
@@ -39,6 +43,10 @@ class StockController {
 
   async getTotalStockByProduct(productSku) {
     return this.service.getTotalStockByProduct(productSku);
+  }
+
+  async deductStocksByProducts(items) {
+    return this.service.deductStocksByProducts(items);
   }
 }
 

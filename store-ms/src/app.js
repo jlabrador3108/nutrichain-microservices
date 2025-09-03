@@ -1,9 +1,13 @@
 import dotenv from "dotenv";
-import Server from "./server";
+import Server from "./server.js";
 
 dotenv.config();
 
 const server = new Server();
 
+await server.init();
+
 server.listen();
+
+// import "./modules/order/workers/order.worker.js";
 

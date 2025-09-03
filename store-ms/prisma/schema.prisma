@@ -7,12 +7,18 @@ datasource db {
     url      = env("MONGODB_URI")
 }
 
+enum Status {
+    PENDING
+    CONFIRMED
+    CANCELLED
+}
+
 model Order {
     id       String      @id @default(auto()) @map("_id") @db.ObjectId
     customer String
     date     DateTime
     items    OrderItem[]
-    status   String      @default("PENDING")
+    status   Status      @default(PENDING)
 }
 
 model OrderItem {

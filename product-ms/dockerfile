@@ -17,4 +17,4 @@ RUN yarn install
 
 EXPOSE 3000
 
-CMD yarn migration:run && yarn start:dev
+CMD yarn migration:run && yarn run seed && yarn start:dev

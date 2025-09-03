@@ -1,4 +1,4 @@
-import { ResponseHandler } from "../utils/response-handler";
+import { ResponseHandler } from "../utils/response-handler.js";
 
 export function responseInterceptor(
   req,

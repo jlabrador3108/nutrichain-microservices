@@ -17,4 +17,4 @@ RUN yarn install
 
 EXPOSE 4000
 
-CMD npx prisma generate && npx prisma db push && yarn start:dev
+CMD npx prisma generate && npx prisma db push && yarn run seed && yarn start:dev

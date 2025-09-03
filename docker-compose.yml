@@ -24,6 +24,11 @@ services:
       MYSQL_DATABASE: ${PRODUCT_DB_NAME}
       MYSQL_ROOT_USER: ${PRODUCT_DB_USERNAME}
       MYSQL_ROOT_PASSWORD: ${PRODUCT_DB_PASSWORD}
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 5s
+      timeout: 3s
+      retries: 20  
 
   elasticsearch:
     image: elasticsearch:8.11.3
@@ -87,8 +92,8 @@ services:
   product-ms:
     container_name: product_ms
     depends_on:
-      - product-db
-      - kafka   
+      product-db:
+        condition: service_healthy         
     build: ./product-ms
     ports:
       - ${PRODUCT_MS_PORT}:${PRODUCT_MS_PORT}
@@ -123,6 +128,30 @@ services:
     environment:
       - PORT=${WAREHOUSE_MS_PORT}
       - MONGODB_URI=${WAREHOUSE_MONGODB_URI}  
+
+  redis:
+    image: redis:7.2-alpine
+    container_name: redis_store
+    ports:
+      - "6379:6379"
+    restart: always
+    command: ["redis-server", "--appendonly", "yes", "--bind", "0.0.0.0"]
+
+  store-ms:
+    container_name: store_ms
+    depends_on:
+      - mongodb
+      - redis  
+    build: ./store-ms
+    ports:
+      - ${STORE_MS_PORT}:${STORE_MS_PORT}
+    volumes:
+      - ./store-ms/src:/usr/src/app/src
+    environment:
+      - PORT=${STORE_MS_PORT}
+      - MONGODB_URI=${STORE_MONGODB_URI}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379         
 
 volumes:
   product_db_data:    

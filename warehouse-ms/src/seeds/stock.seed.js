@@ -16,12 +16,12 @@ export const seedStock = async () => {
         await prisma.stock.createMany({
           data: [
             {
-              productSku: "prod123",
+              productSku: "pollo-001",
               warehouseId: warehouses[0].id,
               quantity: 100,
             },
             {
-              productSku: "prod123",
+              productSku: "manzana-001",
               warehouseId: warehouses[1].id,
               quantity: 100,
             },

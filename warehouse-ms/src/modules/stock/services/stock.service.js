@@ -6,6 +6,8 @@ import registerEntry from "./register-entry-stock.service.js";
 import registerExit from "./register-exit-stock.service.js";
 import registerReturn from "./register-return-stock.service.js";
 import transferStock from "./transfer-stock.service.js";
+import checkStockAvailabilityByProducts from "./check-stock-availability-by-products.service.js";
+import deductStocksByProducts from "./deduct-stocks-by-products.service.js";
 
 export default class StockService {
   constructor() {
@@ -17,5 +19,7 @@ export default class StockService {
     this.getOrCreateStock = getOrCreateStock;
     this.getTotalStockByProduct = getTotalStockByProduct;
     this.getStock = getStock
+    this.checkStockAvailabilityByProducts = checkStockAvailabilityByProducts
+    this.deductStocksByProducts = deductStocksByProducts
   }
 }

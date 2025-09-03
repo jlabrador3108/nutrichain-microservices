@@ -6,6 +6,8 @@ export const Query = {
     controller.getStock(productSku, warehouseId),
   totalStockByProduct: async (_, { productSku }) =>
     controller.getTotalByProduct(productSku),
+  checkStockAvailabilityByProducts: async (_, { items }) =>
+    controller.service.checkStockAvailabilityByProducts(items),
 };
 
 export const Mutation = {
@@ -28,4 +30,5 @@ export const Mutation = {
     }),
   adjustStock: async (_, { productSku, warehouseId, quantity, note }) =>
     controller.adjust({ productSku, warehouseId, quantity, note }),
+  deductStocksByProducts: async (_, { items }) => controller.deductStocksByProducts(items),
 };
