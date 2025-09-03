@@ -9,5 +9,3 @@ await server.init();
 
 server.listen();
 
-// import "./modules/order/workers/order.worker.js";
-

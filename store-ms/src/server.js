@@ -1,10 +1,10 @@
 import express from "express";
-import config from "./common/config/env.js";
 import cors from "cors";
 import { createServer } from "http";
 import { allExceptionsHandler } from "./common/middlewares/all-exceptions.filter.js";
 import { responseInterceptor } from "./common/middlewares/response.interceptor.js";
 import { loadRoutes } from "./common/routes/index.js";
+import { startQueueProcessor } from "./common/queue/simple-redis-queue.js";
 
 class Server {
   app;
@@ -39,6 +39,7 @@ class Server {
   listen() {
     this.server.listen(this.port, () => {
       console.log(`Server store-ms running on port: ${this.port}`);
+      startQueueProcessor();
     });
   }
 }

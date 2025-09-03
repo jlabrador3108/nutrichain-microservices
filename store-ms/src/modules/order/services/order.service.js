@@ -1,5 +1,5 @@
 import { prisma } from "../../../common/prisma/client.js";
-import { orderQueue } from "../../../common/queue/redis-queue.js";
+// import { orderQueue } from "../../../common/queue/redis-queue.js";
 
 export class OrderService {
   async getOrders() {
@@ -16,12 +16,4 @@ export class OrderService {
     return { data };
   }
 
-  async enqueueOrder(orderData) {
-  const job = await orderQueue.add("new-order", orderData, {
-    attempts: 5,
-    backoff: { type: "exponential", delay: 1000 },
-  });
-
-  return job.id;
-}
 }

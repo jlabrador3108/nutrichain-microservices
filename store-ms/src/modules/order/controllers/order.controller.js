@@ -1,4 +1,4 @@
-// import { enqueueOrder } from "../../../common/queue/redis-queue.js";
+import { addToQueue } from "../../../common/queue/simple-redis-queue.js";
 import { ResponseHandler } from "../../../common/utils/response-handler.js";
 import { CreateOrderService } from "../services/create-order.service.js";
 import { OrderService } from "../services/order.service.js";
@@ -12,21 +12,13 @@ export class OrderController {
       const { customer, items } = req.body;
       const date = req.body.date ? new Date(date) : new Date();
 
-      const jobId = await this.orderService.enqueueOrder({ customer, date, items });
-      
-      // const result = await this.createService.createOrder({
-      //   customer,
-      //   date,
-      //   items,
-      // });
+      await addToQueue({ customer, date, items });
 
       return res.json(
-      ResponseHandler.ok({
-        data: { jobId },
-        message: "Order has been enqueued for processing",
-      })
-    );
-      // res.json(result);
+        ResponseHandler.ok({
+          message: "Order in process",
+        })
+      );
     } catch (err) {
       next(err);
     }

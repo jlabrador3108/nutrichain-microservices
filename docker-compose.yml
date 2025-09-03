@@ -150,8 +150,9 @@ services:
     environment:
       - PORT=${STORE_MS_PORT}
       - MONGODB_URI=${STORE_MONGODB_URI}
-      - REDIS_HOST=redis
-      - REDIS_PORT=6379         
+      - REDIS_HOST=${STORE_REDIS_HOST}
+      - REDIS_PORT=${STORE_REDIS_PORT}
+      - WAREHOUSE_MS_URL=${WAREHOUSE_MS_URL}         
 
 volumes:
   product_db_data:    
