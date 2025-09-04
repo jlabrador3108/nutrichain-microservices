@@ -1,0 +1,4 @@
+services:
+#    acme_reports.example:
+#        class: Acme\ReportsBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

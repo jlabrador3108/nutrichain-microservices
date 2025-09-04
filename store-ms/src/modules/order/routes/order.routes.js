@@ -8,6 +8,7 @@ const controller = new OrderController();
 
 router.post("/", validate(orderSchema), controller.createOrder.bind(controller));
 router.get("/", controller.getOrders.bind(controller));
+router.get("/orders-by-products", controller.getOrdersByProducts.bind(controller));
 router.get("/:id", controller.getOrderById.bind(controller));
 
 export default router;

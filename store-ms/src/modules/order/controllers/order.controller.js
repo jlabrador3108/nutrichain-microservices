@@ -1,11 +1,13 @@
 import { addToQueue } from "../../../common/queue/simple-redis-queue.js";
 import { ResponseHandler } from "../../../common/utils/response-handler.js";
 import { CreateOrderService } from "../services/create-order.service.js";
+import { OrdersByProductsService } from "../services/get-orders-by-products.service.js";
 import { OrderService } from "../services/order.service.js";
 
 export class OrderController {
   createService = new CreateOrderService();
   orderService = new OrderService();
+  ordersByProductsService = new OrdersByProductsService();
 
   async createOrder(req, res, next) {
     try {
@@ -26,7 +28,8 @@ export class OrderController {
 
   async getOrders(req, res, next) {
     try {
-      const result = await this.orderService.getOrders();
+      const {query} = req;
+      const result = await this.orderService.getOrders(query);
       res.json(result);
     } catch (err) {
       next(err);
@@ -37,6 +40,15 @@ export class OrderController {
     try {
       const { id } = req.params;
       const result = await this.orderService.getOrderById(id);
+      res.json(result);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getOrdersByProducts(req, res, next) {
+    try {
+      const result = await this.ordersByProductsService.getOrdersByProducts();
       res.json(result);
     } catch (err) {
       next(err);

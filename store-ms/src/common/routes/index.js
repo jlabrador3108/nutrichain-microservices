@@ -19,6 +19,7 @@ export async function loadRoutes(app) {
       }
     } catch (e) {
       // Si no hay rutas, ignoramos
+      console.log(`Error loading routes for module ${moduleName}:`, e.message);
     }
   }
 }

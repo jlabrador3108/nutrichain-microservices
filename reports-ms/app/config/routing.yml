@@ -1,0 +1,19 @@
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+reports:
+    resource: "@ReportsBundle/Controller/"
+    type:     annotation    
+
+# reports_stock:
+#     path: /reports/stock
+#     defaults: { _controller: App\Controller\ReportController::stockAction }
+
+# reports_orders:
+#     path: /reports/orders
+#     defaults: { _controller: App\Controller\ReportController::ordersAction }
+
+# reports_history:
+#     path: /reports/history/{productId}
+#     defaults: { _controller: App\Controller\ReportController::historyAction }

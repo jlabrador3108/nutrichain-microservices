@@ -152,7 +152,22 @@ services:
       - MONGODB_URI=${STORE_MONGODB_URI}
       - REDIS_HOST=${STORE_REDIS_HOST}
       - REDIS_PORT=${STORE_REDIS_PORT}
-      - WAREHOUSE_MS_URL=${WAREHOUSE_MS_URL}         
+      - WAREHOUSE_MS_URL=${WAREHOUSE_MS_URL}
+
+  php:
+    build: ./reports-ms/docker/php
+    volumes:
+      - ./reports-ms:/var/www/html
+    environment:
+      - WAREHOUSE_MS_URL=${WAREHOUSE_MS_URL}
+      - STORE_MS_URL=${STORE_MS_URL}
+  nginx:
+    build: ./reports-ms/docker/nginx
+    ports:
+      - "8088:80"
+    depends_on: [php]
+    volumes:
+      - ./reports-ms:/var/www/html             
 
 volumes:
   product_db_data:    

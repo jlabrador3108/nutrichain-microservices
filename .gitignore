@@ -49,3 +49,28 @@ pids
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+
+#php
+
+# Dependencias de PHP
+vendor/
+
+# Archivos de logs y cache
+cache/
+logs/
+sessions/
+
+
+# Composer      # opcional, depende si quieres versionarlo o no
+.phpunit.result.cache
+
+# IDE / OS
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Symfony estándar
+public/bundles/
+

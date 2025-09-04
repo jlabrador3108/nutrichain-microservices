@@ -10,6 +10,10 @@ import {
   Mutation as StockMutation,
 } from "../modules/stock/graphql/stock.resolver.js";
 
+import {
+  Query as MovementQuery
+} from "../modules/movement/graphql/stock.resolver.js";
+
 const typeDefs = gql`
   scalar JSON
   enum MovementType {
@@ -49,9 +53,19 @@ const typeDefs = gql`
     quantity: Int!
   }
 
+  type ByProduct {
+    productSku: String!
+    totalQuantity: Int!
+  }
+
   type StockSummary {
     total: Int!
     byWarehouse: [ByWarehouse!]!
+  }
+
+  type totalStockByProductsSummary{
+    total: Int!
+    byProduct: [ByProduct!]!
   }
 
   type Movement {
@@ -76,6 +90,12 @@ const typeDefs = gql`
     stock(productSku: String!, warehouseId: ID!): Stock
     totalStockByProduct(productSku: String!): StockSummary!
     checkStockAvailabilityByProducts(items: [ItemInput!]!): Boolean!
+    getTotalStockByProducts: totalStockByProductsSummary!
+    productMovements(
+      productSku: String!
+      startDate: String
+      endDate: String
+    ): [Movement!]!
   }
 
   input LocationInput {
@@ -142,6 +162,7 @@ const resolvers = {
   Query: {
     ...WarehouseQuery,
     ...StockQuery,
+    ...MovementQuery
   },
   Mutation: {
     ...WarehouseMutation,

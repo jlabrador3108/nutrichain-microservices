@@ -48,6 +48,10 @@ class StockController {
   async deductStocksByProducts(items) {
     return this.service.deductStocksByProducts(items);
   }
+  
+  async getTotalStockByProducts() {
+    return this.service.getTotalStockByProducts();
+  }
 }
 
 export default StockController;
