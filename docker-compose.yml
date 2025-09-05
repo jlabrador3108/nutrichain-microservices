@@ -11,6 +11,10 @@ services:
     command: yarn start:dev
     environment:
       - PORT=${API_GATEWAY_PORT}
+      - PRODUCT_SERVICE_URL=${PRODUCT_SERVICE_URL}
+      - WAREHOUSE_SERVICE_URL=${WAREHOUSE_MS_URL}
+      - STORE_SERVICE_URL=${STORE_MS_URL}
+      - REPORTS_SERVICE_URL=${REPORTS_SERVICE_URL}
 
   product-db:
     container_name: product_database
@@ -105,7 +109,14 @@ services:
       - DB_PORT=${PRODUCT_DB_PORT}
       - DB_USERNAME=${PRODUCT_DB_USERNAME}
       - DB_PASSWORD=${PRODUCT_DB_PASSWORD}
-      - DB_NAME=${PRODUCT_DB_NAME}    
+      - DB_NAME=${PRODUCT_DB_NAME}
+      - ELS_HOST=${ELS_HOST}
+      - ELS_TOKEN=${ELS_TOKEN}
+      - ELS_PASSWORD=${ELS_PASSWORD}
+      - BROKERS=${BROKERS}
+      - KAFKA_CLIENT_PASSWORD=${KAFKA_CLIENT_PASSWORD}
+      - KAFKA_CLIENT_USER=${KAFKA_CLIENT_USER}
+      - STAGE=${STAGE} 
 
   mongodb:
     container_name: warehouse_mongodb
@@ -155,7 +166,8 @@ services:
       - WAREHOUSE_MS_URL=${WAREHOUSE_MS_URL}
 
   php:
-    build: ./reports-ms/docker/php
+    build: ./reports-ms
+    container_name: reports_php
     volumes:
       - ./reports-ms:/var/www/html
     environment:
@@ -163,6 +175,7 @@ services:
       - STORE_MS_URL=${STORE_MS_URL}
   nginx:
     build: ./reports-ms/docker/nginx
+    container_name: reports_nginx
     ports:
       - "8088:80"
     depends_on: [php]

@@ -1,13 +1,13 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProductsModule } from './products/products.module';
-import { ProductModule } from './product/product.module';
-import { StockModule } from './stock/stock.module';
-import { OrderModule } from './order/order.module';
+import { ProductModule } from './modules/product/product.module';
+import { WarehouseModule } from './modules/warehouse/warehouse.module';
+import { StoreModule } from './modules/store/store.module';
+import { ReportsModule } from './modules/reports/reports.module';
 
 @Module({
-  imports: [ProductsModule, ProductModule, StockModule, OrderModule],
+  imports: [ProductModule, WarehouseModule, StoreModule, ReportsModule],
   controllers: [AppController],
   providers: [AppService],
 })
