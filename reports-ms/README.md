@@ -1,69 +1,66 @@
-Symfony Standard Edition
-========================
+# Reports MS
 
-Welcome to the Symfony Standard Edition - a fully-functional Symfony
-application that you can use as the skeleton for your new applications.
+## Descripción
 
-For details on how to download and get started with Symfony, see the
-[Installation][1] chapter of the Symfony Documentation.
+- Microservicio para la gestion de reportes
 
-What's inside?
---------------
+## Tecnologías utilizadas
 
-The Symfony Standard Edition is configured with the following defaults:
+- Symfony2.8/php7.2
 
-  * An AppBundle you can use to start coding;
+## Instalación y configuración
 
-  * Twig as the only configured template engine;
+1. **Congigurar para Docker**
 
-  * Doctrine ORM/DBAL;
+ - Crear un doker-compose.yml en la raíz y copiar:
 
-  * Swiftmailer;
+ php:
+    build: .
+    container_name: reports_php
+    volumes:
+      - ./:/var/www/html
+    environment:
+      - WAREHOUSE_MS_URL=http://localhost:4000/graphql
+      - STORE_MS_URL=http://localhost:4001/api
+  nginx:
+    build: .
+    container_name: reports_nginx
+    ports:
+      - "8088:80"
+    depends_on: [php]
+    volumes:
+      - ./:/var/www/html     
 
-  * Annotations enabled for everything.
+2. **Iniciar los contenedores con Docker Compose**
 
-It comes pre-configured with the following bundles:
+   ```bash
+   docker-compose up -d
 
-  * **FrameworkBundle** - The core Symfony framework bundle
+   ```
 
-  * [**SensioFrameworkExtraBundle**][6] - Adds several enhancements, including
-    template and routing annotation capability
+## Descripción de la arquitectura general
 
-  * [**DoctrineBundle**][7] - Adds support for the Doctrine ORM
+El proyecto está desarrollado con Symfony 2.8, un framework PHP basado en el patrón MVC (Modelo–Vista–Controlador) y en el uso intensivo de componentes desacoplados.
 
-  * [**TwigBundle**][8] - Adds support for the Twig templating engine
+La arquitectura general se organiza de la siguiente manera:
 
-  * [**SecurityBundle**][9] - Adds security by integrating Symfony's security
-    component
+- AppBundle / Módulos → cada bundle encapsula una funcionalidad específica del sistema.
 
-  * [**SwiftmailerBundle**][10] - Adds support for Swiftmailer, a library for
-    sending emails
+- Controllers → reciben las peticiones HTTP, gestionan la lógica de enrutamiento y coordinan la respuesta adecuada.
 
-  * [**MonologBundle**][11] - Adds support for Monolog, a logging library
+- Services → contienen la lógica de negocio reutilizable, inyectados en los controladores mediante el service container de Symfony.
 
-  * **WebProfilerBundle** (in dev/test env) - Adds profiling functionality and
-    the web debug toolbar
+- Routing → define las URLs del sistema y las asocia con los controladores correspondientes.
 
-  * **SensioDistributionBundle** (in dev/test env) - Adds functionality for
-    configuring and working with Symfony distributions
 
-  * [**SensioGeneratorBundle**][13] (in dev/test env) - Adds code generation
-    capabilities
+## Dependencias clave del proyecto
 
-  * **DebugBundle** (in dev/test env) - Adds Debug and VarDumper component
-    integration
+El proyecto se apoya en varias dependencias esenciales proporcionadas por Symfony y por librerías externas. Las más relevantes son:
 
-All libraries and bundles included in the Symfony Standard Edition are
-released under the MIT or BSD license.
+- PHP 7.2 → Lenguaje de programación base.
 
-Enjoy!
+- Symfony 2.8 → Framework principal que provee la estructura MVC y los componentes fundamentales (HttpKernel, Routing, DependencyInjection, EventDispatcher, etc.).
 
-[1]:  https://symfony.com/doc/2.8/setup.html
-[6]:  https://symfony.com/doc/current/bundles/SensioFrameworkExtraBundle/index.html
-[7]:  https://symfony.com/doc/2.8/doctrine.html
-[8]:  https://symfony.com/doc/2.8/templating.html
-[9]:  https://symfony.com/doc/2.8/security.html
-[10]: https://symfony.com/doc/2.8/email.html
-[11]: https://symfony.com/doc/2.8/logging.html
-[12]: https://symfony.com/doc/2.8/assetic/asset_management.html
-[13]: https://symfony.com/doc/current/bundles/SensioGeneratorBundle/index.html
+- Composer → Gestor de dependencias para PHP, encargado de instalar y autoloadear las librerías necesarias.
+
+- Monolog → Sistema de logging configurable para registrar errores y eventos de la aplicación.

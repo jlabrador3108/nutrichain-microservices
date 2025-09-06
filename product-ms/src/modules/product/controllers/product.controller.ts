@@ -14,7 +14,7 @@ export class ProductController {
   private updateService = new UpdateProductService();
   private findElsService = new FindElsProductService();
 
-  /** GET /products */
+  /** GET /product */
   async getAll(req: Request, res: Response<ResponseInterface<any>>, next: NextFunction) {
     try {
       const products = await this.productService.getAll();
@@ -24,7 +24,7 @@ export class ProductController {
     }
   }
 
-  /** POST /products */
+  /** POST /product */
   async create(req: Request<{}, {}, CreateProductDto>, res: Response<SingleResponse<any>>, next: NextFunction) {
     try {
       const product = await this.createService.create(req.body);
@@ -47,7 +47,7 @@ export class ProductController {
     }
   }
 
-  /** DELETE /products/:id */
+  /** DELETE /product/:id */
   async delete(req: Request<{ id: string }>, res: Response<MessageResponse>, next: NextFunction) {
     try {
       const id = Number(req.params.id);
@@ -60,7 +60,7 @@ export class ProductController {
     }
   }
 
-  /** GET /products/sku/:sku */
+  /** GET /product/sku/:sku */
   async getBySku(req: Request<{ sku: string }>, res: Response<SingleResponse<any>>, next: NextFunction) {
     try {
       const { sku } = req.params;
@@ -71,7 +71,7 @@ export class ProductController {
     }
   }
 
-  /** GET /products/:id */
+  /** GET /product/:id */
   async getById(req: Request<{ id: string }>, res: Response<SingleResponse<any>>, next: NextFunction) {
     try {
       const id = Number(req.params.id);
@@ -84,12 +84,30 @@ export class ProductController {
     }
   }
 
-  /** GET /products/search */
+  /** GET /product/search */
   async findEls(req: Request<{}, {}, {}, FindElsProductQuery>, res: Response<ResponseInterface<any>>, next: NextFunction) {
     try {
       const query = req.query;
       const product = await this.findElsService.findEls(query);
       res.json(product);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getCategories(req: Request, res: Response<ResponseInterface<any>>, next: NextFunction) {
+    try {
+      const categories = await this.productService.getCategories();
+      res.json(categories);
+    } catch (err) {
+      next(err);
+    }
+  }
+
+  async getUnitMeasurement(req: Request, res: Response<ResponseInterface<any>>, next: NextFunction) {
+    try {
+      const unitMeasurement = await this.productService.getUnitMeasurement();
+      res.json(unitMeasurement);
     } catch (err) {
       next(err);
     }

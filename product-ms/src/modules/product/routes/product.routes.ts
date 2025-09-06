@@ -11,10 +11,13 @@ const router = Router();
 router.get("/", controller.getAll.bind(controller));
 router.get("/els", validate(FindElsProductSchema, "query"),controller.findEls.bind(controller));
 router.get("/sku/:sku", controller.getBySku.bind(controller));
+router.get("/categories", controller.getCategories.bind(controller));
+router.get("/unit-measurement", controller.getUnitMeasurement.bind(controller));
 router.get("/:id", controller.getById.bind(controller));
 router.post("/", validate(CreateProductSchema), controller.create.bind(controller));
 router.patch("/:id", validate(UpdateProductSchema), controller.update.bind(controller));
 router.delete("/:id", controller.delete.bind(controller));
+
 
 
 export default router;

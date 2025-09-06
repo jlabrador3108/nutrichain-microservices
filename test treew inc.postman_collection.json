@@ -1,0 +1,635 @@
+{
+	"info": {
+		"_postman_id": "425d1487-f58a-4a41-8426-156aa8150b9d",
+		"name": "test treew inc",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "36934634"
+	},
+	"item": [
+		{
+			"name": "product",
+			"item": [
+				{
+					"name": "get products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"lomo ahumado\",\r\n    \"description\": \"lomo ahumado\",\r\n    \"sku\": \"lomito\",\r\n    \"weight\": 20,\r\n    \"imageUrl\": \"http://local.com\",\r\n    \"categoryFoodId\": 1,\r\n    \"unitMeasurementId\": 1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/product",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"product"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"pollo editado\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/product/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"product",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"compotica\"\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/product/3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"product",
+								"3"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by id",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"compota\",\r\n    \"description\": \"compota\",\r\n    \"sku\": \"compota2\",\r\n    \"weight\": 20,\r\n    \"imageUrl\": \"http://local.com\",\r\n    \"categoryFoodId\": 1,\r\n    \"unitMeasurementId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/product/6",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"product",
+								"6"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get by sku",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"compota\",\r\n    \"description\": \"compota\",\r\n    \"sku\": \"compota2\",\r\n    \"weight\": 20,\r\n    \"imageUrl\": \"http://local.com\",\r\n    \"categoryFoodId\": 1,\r\n    \"unitMeasurementId\": 1\r\n}"
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/product/sku/manzana-001",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"product",
+								"sku",
+								"manzana-001"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "find els",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "targetId",
+									"value": "9d5b7d93-e164-48a0-80c0-5df4e2ef0b8d",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "targetType",
+									"value": "business",
+									"type": "text",
+									"disabled": true
+								},
+								{
+									"key": "file",
+									"type": "file",
+									"src": "/C:/Users/g/Pictures/Screenshots/Screenshot 2025-08-07 195811.png",
+									"disabled": true
+								},
+								{
+									"key": "",
+									"value": "",
+									"type": "text",
+									"disabled": true
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/product/els?name=editado",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"product",
+								"els"
+							],
+							"query": [
+								{
+									"key": "categoryFoodId",
+									"value": "2",
+									"disabled": true
+								},
+								{
+									"key": "name",
+									"value": "editado"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "warehouse",
+			"item": [
+				{
+					"name": "get warehouses",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/warehouse",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"warehouse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get stock",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/warehouse/stock?productSku=pollo&warehouseId=68b8ee80c979930502885ce2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"warehouse",
+								"stock"
+							],
+							"query": [
+								{
+									"key": "productSku",
+									"value": "pollo"
+								},
+								{
+									"key": "warehouseId",
+									"value": "68b8ee80c979930502885ce2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create warehouse",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Almacen 3\",\r\n    \"location\": {\r\n        \"lat\": 20,\r\n        \"lon\": 20\r\n    }\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/warehouse",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"warehouse"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register entry",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productSku\": \"entry\",\r\n    \"warehouseId\": \"68ba5610178dc9e4aefd446f\",\r\n    \"quantity\": 50\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/warehouse/entry",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"warehouse",
+								"entry"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "register exit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"productSku\": \"entry\",\r\n    \"warehouseId\": \"68ba5610178dc9e4aefd446f\",\r\n    \"quantity\": 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/warehouse/exit",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"warehouse",
+								"exit"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "store",
+			"item": [
+				{
+					"name": "get orders",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:5000/api/order?startDate=2025-09-01&endDate=2025-09-10",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"order"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-09-01"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-09-10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get orders by products",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/order/orders-by-products",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"order",
+								"orders-by-products"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "create order",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"customer\": \"JOrge\",\r\n    \"items\": [\r\n        {\r\n            \"productSku\": \"manzana-001\",\r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:7000/api/order",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"order"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get order by id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/order/68ba18def2d0ab96781399dc",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"order",
+								"68ba18def2d0ab96781399dc"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "reports",
+			"item": [
+				{
+					"name": "get products-by-warehouses-and-orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/reports/products-by-warehouses-and-orders",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"reports",
+								"products-by-warehouses-and-orders"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get product-movements",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:7000/api/reports/product-movements?productSku=pollito&startDate=2025-09-02&endDate=2025-09-05",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "7000",
+							"path": [
+								"api",
+								"reports",
+								"product-movements"
+							],
+							"query": [
+								{
+									"key": "productSku",
+									"value": "pollito"
+								},
+								{
+									"key": "startDate",
+									"value": "2025-09-02"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-09-05"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get orders",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:5000/api/reports/orders?startDate=2025-09-02&endDate=2025-09-06",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5000",
+							"path": [
+								"api",
+								"reports",
+								"orders"
+							],
+							"query": [
+								{
+									"key": "startDate",
+									"value": "2025-09-02"
+								},
+								{
+									"key": "endDate",
+									"value": "2025-09-06"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

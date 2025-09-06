@@ -2,9 +2,13 @@ import { AppDataSource } from "../../../common/data-access/data-source";
 import { ResponseHandler } from "../../../common/utils/response-handler";
 import { Response, SingleResponse, MessageResponse } from "../../../common/interfaces/response-interfaces";
 import Product from "../models/product.persistence.entity";
+import CategoryFood from "../models/category-food.persistence.entity";
+import UnitMeasurement from "../models/unit-measurement.persistence.entity";
 
 export class ProductService {
   private repo = AppDataSource.getRepository(Product);
+  private repoCategoryFood = AppDataSource.getRepository(CategoryFood);
+  private repoUnitMeasurement = AppDataSource.getRepository(UnitMeasurement);
 
   /**
    * Obtiene todos los productos con count.
@@ -59,5 +63,21 @@ export class ProductService {
     }
 
     return { message: "Product removed" };
+  }
+
+  async getCategories(): Promise<Response<CategoryFood>> {
+    const [data, count] = await this.repoCategoryFood.findAndCount();
+    return {
+      data,
+      meta: { total: count },
+    };
+  }
+
+  async getUnitMeasurement(): Promise<Response<UnitMeasurement>> {
+    const [data, count] = await this.repoUnitMeasurement.findAndCount();
+    return {
+      data,
+      meta: { total: count },
+    };
   }
 }

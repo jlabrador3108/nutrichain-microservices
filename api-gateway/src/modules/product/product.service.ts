@@ -84,4 +84,24 @@ export class ProductService {
       throw new ServiceUnavailableException('Product service unavailable');
     }
   }
+
+  async getCategories() {
+    try {
+      const { data } = await this.http.get(`/product/categories`);
+      return data;
+    } catch (e) {
+      if (e?.response?.data) ResponseHandler.error(e.response.data);
+      throw new ServiceUnavailableException('Product service unavailable');
+    }
+  }
+
+  async getUnitMeasurement() {
+    try {
+      const { data } = await this.http.get(`/product/unit-measurement`);
+      return data;
+    } catch (e) {
+      if (e?.response?.data) ResponseHandler.error(e.response.data);
+      throw new ServiceUnavailableException('Product service unavailable');
+    }
+  }
 }

@@ -38,6 +38,16 @@ export class ProductController {
     return this.productService.findBySku(sku);
   }
 
+  @Get('/categories')
+  getCategories() {
+    return this.productService.getCategories();
+  }
+
+  @Get('/unit-measurement')
+  getUnitMeasurement() {
+    return this.productService.getUnitMeasurement();
+  }
+
   @Get(':id')
   findById(@Param('id', ParseIntPipe) id: number) {
     return this.productService.findById(+id);
